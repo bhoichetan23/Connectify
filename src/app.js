@@ -4,9 +4,12 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
-
-
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5501/",
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 
@@ -20,16 +23,13 @@ app.use("/", profileRouter);
 app.use("/", requestRouter);
 app.use("/", userRouter);
 
-
- 
-
-connectDB().then(()=>{
-   console.log("Database connection established..");
-   app.listen(3000,()=>{
-      console.log("server listening on port number 3000");
-
-   });
-}).catch((err)=>{
-   console.log("Database connection failed");
-})
-
+connectDB()
+  .then(() => {
+    console.log("Database connection established..");
+    app.listen(4000, () => {
+      console.log("server listening on port number 4000");
+    });
+  })
+  .catch((err) => {
+    console.log("Database connection failed");
+  });
