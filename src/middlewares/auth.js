@@ -9,7 +9,7 @@ const userAuth= async (req,res,next)=>{
 
         }
 
-        const decodeObj= await jwt.verify(token, JWT_SECRET);
+        const decodeObj= await jwt.verify(token, process.env.JWT_SECRET);
 
         const{_id}=decodeObj;
 

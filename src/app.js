@@ -8,7 +8,7 @@ require('dotenv').config();
 
 app.use(
   cors({
-    origin: "http://localhost:5501/",
+    origin: "http://localhost:5000/",
     credentials: true,
   })
 );
@@ -29,7 +29,7 @@ connectDB()
   .then(() => {
     console.log("Database connection established..");
     app.listen(process.env.PORT, () => {
-      console.log("server listening on port number 4000");
+      console.log("server listening on port number 5000");
     });
   })
   .catch((err) => {
