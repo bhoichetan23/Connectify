@@ -6,7 +6,7 @@ const bcrypt=require("bcrypt");
 
 
 
-const userSchema= mongoose.Schema({
+const userSchema= new mongoose.Schema({
     firstName:{
         type: String,
         required:true,
@@ -96,7 +96,7 @@ userSchema.methods.validatePassword= async function (passwordInputByUser){
     return isPasswordValid;
 }
 
-const User = mongoose.model("User",userSchema);
+const User = mongoose.model("User", userSchema);
 
 module.exports= User;
 

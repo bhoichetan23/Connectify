@@ -1,10 +1,7 @@
 const express = require("express");
 const userAuth = require("../middlewares/auth");
-const connectionRequest = require("../models/connectionRequest");
-const { Connection } = require("mongoose");
-const ConnectionRequest = require("../models/connectionRequest");
-
 const requestRouter = express.Router();
+
 
 requestRouter.post("/request/send/:status/:toUserId", userAuth, async (req,res)=>{
   try{
@@ -15,7 +12,7 @@ requestRouter.post("/request/send/:status/:toUserId", userAuth, async (req,res)=
 
     // Check if there is an existing connection request
 
-    const existingConnectionRequest = await ConnectionRequest.findOne({
+    const existingConnectionRequest = await connectionRequest.findOne({
         $or:[
             {fromUserId,toUserId},
             {fromUserId: toUserId, toUserId: fromUserId}
@@ -43,13 +40,13 @@ requestRouter.post("/request/send/:status/:toUserId", userAuth, async (req,res)=
 
     }
 
-    const connectionRequest = new ConnectionRequest({
+    const connectionRequest = new connectionRequest({
         fromUserId,
         toUserId,
         status
     });
 
-    const saveRequest = await ConnectionRequest.save();
+    const saveRequest = await connectionRequest.save();
 
     res.json({
         message: req.user.firstName + "is" + status + "in" + toUser.firstName,
@@ -82,7 +79,7 @@ requestRouter.post("/request/review/:status/:requestId", userAuth, async (req,re
         return res.status(400).json({message: "Status not allowed"});
     }
 
-    const connectionRequest = await ConnectionRequest.findOne({
+    const connectionRequest = await connectionRequest.findOne({
       _id : requestId,
       toUserId : loggedInUser._id,
       status : "interested"
