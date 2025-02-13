@@ -23,5 +23,13 @@
     "mongodb": "^6.9.0",
     "mongoose": "^8.7.0",
     "validator": "^13.12.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bhoichetan23/DevTinder.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bhoichetan23/DevTinder/issues"
+  },
+  "homepage": "https://github.com/bhoichetan23/DevTinder#readme"
 }
