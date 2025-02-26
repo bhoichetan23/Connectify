@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
 
+
 require("dotenv").config();
 
 
@@ -26,10 +27,18 @@ const userRouter = require("./routes/user");
 
 
 
+
+
 app.use("/", authRouter);
 app.use("/", profileRouter);
 app.use("/", requestRouter);
 app.use("/", userRouter);
+
+
+
+
+
+
 
 
 
