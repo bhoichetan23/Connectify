@@ -1,5 +1,7 @@
 const express = require("express");
+
 const connectDB = require("./config/database");
+
 const app = express();
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
@@ -44,8 +46,10 @@ app.use("/", userRouter);
 
 connectDB()
   .then(() => {
+    
     console.log("Database connection established...");
     app.listen(process.env.PORT, () => {
+     
       console.log("Server is successfully listening on port 3000...");
     });
   })
